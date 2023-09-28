@@ -64,9 +64,19 @@ public class BuildingManager : Singleton<BuildingManager>
             else
             {
                 //this will be our code for placing a building
-                current = null;
+                if(!current.IsOverlapping) //remember if we only have one line after an if statement, we don't need the brackets
+                    current = null; //only release the building if it is not overlapping another building
             }
 
         }
+    }
+    public void SetCurrent(Building building)
+    {
+        if(current != null)
+        {
+            Destroy(current.gameObject);
+        }
+        current = Instantiate(building);
+        current.name = building.name;
     }
 }

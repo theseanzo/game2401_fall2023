@@ -16,6 +16,7 @@ public class WorldManager : Singleton<WorldManager>
         {
             Building buildingPrefab = Resources.Load<Building>("Buildings/" + bData.name);
             Building buildingClone = Instantiate(buildingPrefab); //clone the object
+<<<<<<< Updated upstream
             buildingClone.name = bData.name; //we will need this for saving it later
             buildingClone.transform.position = bData.position;
         }
@@ -25,6 +26,12 @@ public class WorldManager : Singleton<WorldManager>
       
     }
 
+=======
+            buildingClone.name = bData.name; ; // save it later
+            buildingClone.transform.position = bData.position;
+        }
+    }
+>>>>>>> Stashed changes
     // Update is called once per frame
     void Update()
     {

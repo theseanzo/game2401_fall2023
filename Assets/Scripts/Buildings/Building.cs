@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
 public class Building : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public Vector2Int size; //vector2 int means that we have set up our buildings to be a particular size for grid locations
     private float colliderHeight = 2f; //We are going to use a fixed height for our colliders
     // Start is called before the first frame update
@@ -21,8 +22,22 @@ public class Building : MonoBehaviour
         
     }
     void Start()
+=======
+    public Vector2Int size; // vector2 int means that we have set up our buildings to be a particular size for grid locations.
+
+    private float colliderHeight = 2f;
+
+    private void OnValidate()
     {
-        
+        BoxCollider collider = GetComponent<BoxCollider>();
+        collider.size = new Vector3(size.x, colliderHeight, size.y);
+        collider.center = new Vector3(0, colliderHeight * 0.5f, 0);
+    }
+    // Start is called before the first frame update
+    private void Awake()
+>>>>>>> Stashed changes
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("Building");
     }
 
     // Update is called once per frame

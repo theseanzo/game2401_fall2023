@@ -16,4 +16,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             return Instance;
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

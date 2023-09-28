@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< Updated upstream
 //Our building manager is going to do the job of handling our buildings being added to our scene as well as being moved in the scene
 public class BuildingManager : Singleton<BuildingManager>
 {
@@ -67,6 +68,33 @@ public class BuildingManager : Singleton<BuildingManager>
                 current = null;
             }
 
+=======
+public class BuildingManager : Singleton<BuildingManager>
+{
+    public BuildingManager current;
+    public Renderer grid;
+
+
+    [SerializeField]
+    float gridFadeSpeed;
+    float gridAlpha;
+
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            if(Physics.Raycast(mouseRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Building")))
+                {
+                Debug.Log("We hit");
+                }
+>>>>>>> Stashed changes
         }
     }
 }

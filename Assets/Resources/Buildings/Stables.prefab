@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1fea300390b55448776bf5f13ce67f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 3, y: 3}
+  size: {x: 5, y: 5}
 --- !u!65 &4099423681681539096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82,7 +82,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 3}
+  m_Size: {x: 5, y: 2, z: 5}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &1597056818846683013
 Rigidbody:

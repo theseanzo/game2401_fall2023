@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
-public class Building : MonoBehaviour
+public class Building : BaseObject
 {
     public Vector2Int size; //vector2 int means that we have set up our buildings to be a particular size for grid locations
     private float colliderHeight = 2f; //We are going to use a fixed height for our colliders

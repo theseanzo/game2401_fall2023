@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6940859058387046554}
   - component: {fileID: 2876148920533394029}
+  - component: {fileID: 8610370350338016773}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -45,6 +46,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45f7493cd5088640be0fd46e1bec020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
+  rotationSpeed: 1
+  attackRange: 1
+  attackInterval: 2
+  attackPower: 10
+  arrowStartPos: {fileID: 7557608011653093669}
+--- !u!114 &8610370350338016773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439461038651450654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1001 &7562294245639114529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102,6 +137,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ddb8672869b2ac4182b06d5e50cfef6, type: 3}
+--- !u!4 &7557608011653093669 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4696002895697412, guid: 8ddb8672869b2ac4182b06d5e50cfef6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7562294245639114529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7565206877804068147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4408071192752658, guid: 8ddb8672869b2ac4182b06d5e50cfef6,

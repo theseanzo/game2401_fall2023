@@ -11,4 +11,13 @@ public class Soldier : Unit
     {
         
     }
+    //let's override the OnAttackActionEvent and do damage to our target
+    public override void OnAttackActionEvent()
+    {
+        base.OnAttackActionEvent(); //first let's do the parent's OnAttackActionEvent (just in case)
+        if (attackTarget != null)//make sure the target has not been destroyed
+        {
+            attackTarget.OnHit(attackPower);
+        }
+    }
 }

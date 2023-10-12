@@ -16,7 +16,7 @@ public class BaseObject : MonoBehaviour
         Health -= damage;
         if(Health <= 0)
         {
-            //we need to do something for dying
+            OnDie();//we need to do something for dying
         }
     }
     public virtual void OnDie() //we will call the OnDie function when we want our character to die

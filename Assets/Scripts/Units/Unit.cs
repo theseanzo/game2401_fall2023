@@ -17,7 +17,7 @@ public class Unit : BaseObject
     [SerializeField]
     float attackInterval = 2f; //how long before they can attack again (avoid constant attacking)
     [SerializeField]
-    float attackPower = 10f;
+    protected int attackPower = 10;
 
     //when we attack, we will need to keep track of when we have attacked last to see how long has elapsed
     private float lastAttackTime = 0f;//this will be used when we are attacking to make sure we wait for the interval to end
@@ -80,6 +80,12 @@ public class Unit : BaseObject
             if(currentPath != null) //make sure we have actually found a path
             {
                 //we know that, on our path, we are going to move between different points on our path and we will move according to our speed. With that, we need to simply move until we get to the end of our path
+
+                //let's make sure our current target has not been destroyed
+                if(target == null)
+                {
+                    SetState(OnIdle());
+                }
                 Vector3 nextPoint = currentPath.vectorPath[currentIndex];//our vectorPath in the path is the list of points along our path
                 transform.position = Vector3.MoveTowards(transform.position, nextPoint, moveSpeed * Time.fixedDeltaTime); //we are moving according to a fixed delta time (our fixed framerate, and we use the fixed frame rate because we WaitForFixedUpdate 
                 LookTowards(nextPoint);
@@ -119,8 +125,27 @@ public class Unit : BaseObject
         attackTarget = target;
         while (true)
         {
+            //we want to attack our target after our interval 
+
+            lastAttackTime += Time.deltaTime;
+            //what do do if our building has been destroyed? We idle again
+            if(attackTarget == null)
+            {
+                SetState(OnIdle());
+            }
+            LookTowards(attackTarget.GetComponent<Collider>().bounds.center);
+            if (lastAttackTime >= attackInterval)
+            {
+                lastAttackTime = 0;
+                Attack();
+                //Attack
+            }
             yield return new WaitForFixedUpdate();
         }
+    }
+    protected virtual void Attack()
+    {
+        anim.SetTrigger("Attack"); //"Attack" is the name for the trigger on our animation
     }
     private void LookForBuilding() //this is our function for finding a building when in our idle state and then we are going to transition to our MoveToTarget state if we find a building
     {
@@ -144,7 +169,10 @@ public class Unit : BaseObject
     
     // Start is called before the first frame update
 
-
+    public virtual void OnAttackActionEvent()
+    {
+        //this will be called by our animation, and will calculate how we do damage
+    }
     // Update is called once per frame
     void Update()
     {

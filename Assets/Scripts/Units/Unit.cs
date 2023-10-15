@@ -50,7 +50,7 @@ public class Unit : BaseObject
     }
     private void SetState(IEnumerator newState) //when we change states, we stop our previous coroutine and then initialize a new one. Technically this can be done with "StopAllCoroutines()" because we only have one coroutine running, but in the case that we had more, we will only a stop a specific coroutine.
     {
-        if(currentState != null)
+        if (currentState != null)
         {
             StopCoroutine(currentState);
         }
@@ -77,31 +77,32 @@ public class Unit : BaseObject
         {
             yield return new WaitForFixedUpdate();
 
-            if(currentPath != null) //make sure we have actually found a path
+            if (currentPath != null) //make sure we have actually found a path
             {
                 //we know that, on our path, we are going to move between different points on our path and we will move according to our speed. With that, we need to simply move until we get to the end of our path
 
                 //let's make sure our current target has not been destroyed
-                if(target == null)
+                if (target == null)
                 {
                     SetState(OnIdle());
+                    yield break;
                 }
                 Vector3 nextPoint = currentPath.vectorPath[currentIndex];//our vectorPath in the path is the list of points along our path
                 transform.position = Vector3.MoveTowards(transform.position, nextPoint, moveSpeed * Time.fixedDeltaTime); //we are moving according to a fixed delta time (our fixed framerate, and we use the fixed frame rate because we WaitForFixedUpdate 
                 LookTowards(nextPoint);
-                if(transform.position == nextPoint)
+                if (transform.position == nextPoint)
                 {
                     currentIndex++; ///we have got the next point so we need to look for another point
                 }
 
-                if(currentIndex >= currentPath.vectorPath.Count)
+                if (currentIndex >= currentPath.vectorPath.Count)
                 {
                     currentIndex = 0;
                     currentPath = null;
                 }
                 //Instead of going towards the center of the building, we are going to go the closest point of the building to use; this ensures that our units will attack the sides of the building rather than the center
                 Vector3 targetPos = target.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-                if(Vector3.Distance(transform.position, targetPos) <= attackRange) //if we get within range of our building, attack
+                if (Vector3.Distance(transform.position, targetPos) <= attackRange) //if we get within range of our building, attack
                 {
                     SetState(OnAttack(target));
                 }
@@ -113,7 +114,7 @@ public class Unit : BaseObject
         //we are going to nneed to calculate where we are rotating towards according to our current position
         Vector3 targetDirection = position - transform.position; //the vector from our position to the position of our target
         //we only want to rotate if that value is something (i.e. if it's 0 don't rotate)
-        if(targetDirection != Vector3.zero)
+        if (targetDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime); //we are essentially blending our rotation time by our current rotation value
@@ -129,9 +130,10 @@ public class Unit : BaseObject
 
             lastAttackTime += Time.deltaTime;
             //what do do if our building has been destroyed? We idle again
-            if(attackTarget == null)
+            if (attackTarget == null)
             {
                 SetState(OnIdle());
+                yield break;
             }
             LookTowards(attackTarget.GetComponent<Collider>().bounds.center);
             if (lastAttackTime >= attackInterval)
@@ -154,10 +156,10 @@ public class Unit : BaseObject
         //we want to find the building that is closest to our character, and set that to be our current target
         float shortestDistance = Mathf.Infinity;
         Building closestBuilding = null; //currently we don't have a closest building so it is null
-        foreach(Building building in allBuildings)
+        foreach (Building building in allBuildings)
         {
             float distance = Vector3.Distance(transform.position, building.transform.position); //get the distance from our unit to the building
-            if(distance < shortestDistance)
+            if (distance < shortestDistance)
             {
                 shortestDistance = distance;
                 closestBuilding = building;
@@ -166,7 +168,7 @@ public class Unit : BaseObject
         if (closestBuilding != null)
             SetState(OnMoveToTarget(closestBuilding)); //here we are going to change our state to OnMoveToTarget using the closest building if and only if we found a building
     }
-    
+
     // Start is called before the first frame update
 
     public virtual void OnAttackActionEvent()
@@ -176,6 +178,6 @@ public class Unit : BaseObject
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

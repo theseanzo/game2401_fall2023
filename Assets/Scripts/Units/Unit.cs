@@ -33,8 +33,9 @@ public class Unit : BaseObject
     private Vector3 lastPos;
     protected Building attackTarget; //we could also set this to be a BaseObject in the future if we want to include Unit combat
 
-    public virtual void Start()
+    protected override void Start()
     {
+        base.Start();
         //we need to set up our last position, our seeker, our animator and then set the current state
         lastPos = transform.position;  //where we were last seen
         seeker = GetComponent<Seeker>(); //find the seeker and set it up

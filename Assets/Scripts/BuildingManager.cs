@@ -18,7 +18,11 @@ public class BuildingManager : Singleton<BuildingManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+    private void Awake()
+    {
+        gameObject.SetActive(GameManager.Instance.CurrentState == GameState.Building);
     }
 
     // Update is called once per frame

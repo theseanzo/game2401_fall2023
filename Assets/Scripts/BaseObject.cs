@@ -23,9 +23,9 @@ public class BaseObject : MonoBehaviour
     {
         Destroy(this.gameObject); //we could also just say gameObject (I wanted to make explicit that every MonoBehaviour has a gameObject associated with it
     }
-    void Start()
+    protected virtual void Start()
     {
-        
+        this.Health = 100;
     }
 
     // Update is called once per frame

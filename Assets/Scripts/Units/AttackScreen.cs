@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AttackScreen : MonoBehaviour
+{
+    [SerializeField]
+    DynamicList unitButtons; //let's specify which unit we are going to use
+    // Start is called before the first frame update
+    void Start()
+    {
+        GameObject[] units = Resources.LoadAll<GameObject>("Units"); //grab all of the game objects from the buildings folder
+        unitButtons.CreateButtons(units);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    public void OnAttackButton(ListButton button)
+    {
+        //BuildingManager.Instance.SetCurrent(button.linkedObject.GetComponent<Building>());
+    }
+}

@@ -20,9 +20,22 @@ public class WorldManager : Singleton<WorldManager>
             buildingClone.transform.position = bData.position;
         }
     }
+    public void DelayedSave()
+    {
+        Invoke("SaveData", 0.1f);
+    }
     public void SaveData()
     {
-      
+        //recreate the list of buildings
+        data.buildings = new List<BuildingData>();
+        Building[] allBuildings = FindObjectsOfType<Building>();
+        foreach(Building building in allBuildings)
+        {
+            BuildingData bData = new BuildingData();
+            bData.name = building.name;
+            bData.position = building.transform.position;
+            data.buildings.Add(bData);
+        }
     }
 
     // Update is called once per frame

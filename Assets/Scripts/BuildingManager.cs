@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 //Our building manager is going to do the job of handling our buildings being added to our scene as well as being moved in the scene
 public class BuildingManager : Singleton<BuildingManager>
@@ -8,6 +9,8 @@ public class BuildingManager : Singleton<BuildingManager>
     public Building current; //current building
     public Renderer grid; //the grid that we are working with
 
+    [SerializeField]
+    UnityEvent buildingAdded;
     //some private variables for the grid:
     [SerializeField]
     float gridFadeSpeed; //how long it takes for a grid to appear and disappear
@@ -64,8 +67,11 @@ public class BuildingManager : Singleton<BuildingManager>
             else
             {
                 //this will be our code for placing a building
-                if(!current.IsOverlapping) //remember if we only have one line after an if statement, we don't need the brackets
+                if (!current.IsOverlapping)
+                {
                     current = null; //only release the building if it is not overlapping another building
+                    buildingAdded.Invoke(); //this broadcasts that the event has happened
+                }
             }
 
         }

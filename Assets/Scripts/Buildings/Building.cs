@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
 public class Building : BaseObject
 {
+    public UnityEvent buildingDestroyed;
     public Vector2Int size; //vector2 int means that we have set up our buildings to be a particular size for grid locations
     private float colliderHeight = 2f; //We are going to use a fixed height for our colliders
     // Start is called before the first frame update
@@ -31,6 +32,7 @@ public class Building : BaseObject
     {
         this.gameObject.layer = LayerMask.NameToLayer("Building"); //after: let's make sure that we actually create a Building layer, but this is needed in order for our buildings to be on a building layer
         rd = GetComponentInChildren<MeshRenderer>();
+        buildingDestroyed.AddListener(WorldManager.Instance.DelayedSave);//our world manager will now listen for a building being destroyed
     }
     private void OnValidate()
     {
@@ -73,5 +75,12 @@ public class Building : BaseObject
             }
 
         }
+    }
+    public override void OnDie()
+    {
+        base.OnDie(); //call our parent's death first. This guarantees that the building's game object is destroyed
+        Destroy(this.gameObject);
+        buildingDestroyed.Invoke();
+        Debug.Log("We got here");
     }
 }

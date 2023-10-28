@@ -5483,7 +5483,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -5735,12 +5735,12 @@ MonoBehaviour:
   panSpeed: 10
   speed: 0.2
   rotationSpeed: 20
-  zoomSpeed: 10
+  zoomSpeed: 20
   smoothing: 5
   rotationSmoothing: 5
   panBorderThickness: 20
   maxZoomAngle: 70
-  minZoomAngle: 30
+  minZoomAngle: 20
   range: {x: 50, y: 50}
   zoomRange: {x: 15, y: 40}
   cameraHolder: {fileID: 963194228}

@@ -8,6 +8,18 @@ public class CamControls : MonoBehaviour
     //private Bounds bounds;
 
     [SerializeField]
+    private float _horizontalSpeed = 2f; // Horizontal rotation speed
+
+    [SerializeField]
+    private float _verticalSpeed = 2f; // Vertical rotation speed
+
+    [SerializeField]
+    private float _yRotation = 0f; // Rotation around the Y axis
+
+    [SerializeField]
+    private float _xRotation = 0f; // Rotation around the X axis
+
+    [SerializeField]
     private float _zoomLevel; // The amount of zoom
 
     [SerializeField]
@@ -34,7 +46,20 @@ public class CamControls : MonoBehaviour
         _zoomLevel = _camera.fieldOfView;
     }
 
-    void Update()
+    private void Orbit()
+    {
+        _xRotation += _horizontalSpeed * Input.GetAxis("Mouse X");
+        _yRotation -= _verticalSpeed * Input.GetAxis("Mouse Y");
+
+        transform.eulerAngles = new Vector3(_xRotation, _yRotation, 0.0f);
+    }
+
+    private void Pan()
+    {
+ 
+    }
+
+    private void Zoom()
     {
         // References the scroll wheel
         float scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -48,7 +73,14 @@ public class CamControls : MonoBehaviour
 
         // Smooths the movement of the camera as it zooms in and out
         _camera.fieldOfView = Mathf.SmoothDamp(_camera.fieldOfView, _zoomLevel, ref _velocity, _smoothTime);
+    }
 
+    void Update()
+    {
+
+        Orbit();
+        Pan();
+        //Zoom();
 
 
 

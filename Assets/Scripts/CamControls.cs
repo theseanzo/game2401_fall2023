@@ -14,12 +14,6 @@ public class CamControls : MonoBehaviour
     private float _verticalSpeed = 2f; // Vertical rotation speed
 
     [SerializeField]
-    private float _yRotation = 0f; // Rotation around the Y axis
-
-    [SerializeField]
-    private float _xRotation = 0f; // Rotation around the X axis
-
-    [SerializeField]
     private float _zoomLevel; // The amount of zoom
 
     [SerializeField]
@@ -38,6 +32,15 @@ public class CamControls : MonoBehaviour
     private float _smoothTime = 0.25f; // The amount of time in seconds it will take the camera to transition between the levels of zoom
 
     [SerializeField]
+    private float _rotationSensitivity = 50f; // How sensitive the camera's rotation is
+
+    [SerializeField]
+    private float _yRotation = 0f; // Rotation around the Y axis
+
+    [SerializeField]
+    private float _xRotation = 0f; // Rotation around the X axis
+
+    [SerializeField]
     private Camera _camera; // Reference to the camera
 
     void Start()
@@ -48,10 +51,16 @@ public class CamControls : MonoBehaviour
 
     private void Orbit()
     {
-        _xRotation += _horizontalSpeed * Input.GetAxis("Mouse X");
-        _yRotation -= _verticalSpeed * Input.GetAxis("Mouse Y");
+        // If we are holding down the right mouse button...
+        if(Input.GetMouseButton(1))
+        {
+            // Rotates the camera around the Y axis when moving the mouse from side to side
+            // Removed the X rotation from the tutorial I followed and changed "Mouse Y" to "Mouse X" so that the camera rotates when moving the mouse side to side, not up and down.
+            _yRotation += Input.GetAxis("Mouse X") * Time.deltaTime * _rotationSensitivity;
 
-        transform.eulerAngles = new Vector3(_xRotation, _yRotation, 0.0f);
+            // This allows the camera's transform to be rotated in local space (I think, from reading the Unity Docs)
+            transform.localEulerAngles = new Vector3(_xRotation, _yRotation, 0);
+        }
     }
 
     private void Pan()
@@ -80,7 +89,7 @@ public class CamControls : MonoBehaviour
 
         Orbit();
         Pan();
-        //Zoom();
+        Zoom();
 
 
 

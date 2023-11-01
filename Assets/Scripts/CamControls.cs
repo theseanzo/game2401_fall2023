@@ -5,7 +5,7 @@ using UnityEngine;
 public class CamControls : MonoBehaviour
 {
     [SerializeField]
-    private Bounds bounds;
+    private Bounds bounds; // This variable was already here, so I'm assuming it's okay for me to use it the same way as we have been.
 
     [SerializeField]
     private float _horizontalSpeed = 2f; // Horizontal rotation speed
@@ -73,8 +73,6 @@ public class CamControls : MonoBehaviour
 
     private void Pan()
     {
-        //transform.position = bounds.ClosestPoint(transform.position);
-
         // Move camera forwards when pressing W
         if (Input.GetKey(KeyCode.W))
         {
@@ -101,6 +99,10 @@ public class CamControls : MonoBehaviour
 
         // Updates the camera's position
         this.transform.position = _cameraPosition;
+
+        // Keeps camera within boundaries
+        transform.position = bounds.ClosestPoint(transform.position);
+
     }
 
     private void Zoom()

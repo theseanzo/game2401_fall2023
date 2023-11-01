@@ -5138,6 +5138,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier
       objectReference: {fileID: 0}
+    - target: {fileID: 1517408402715897900, guid: c9f2d5e7a4f3fce42bee1ad0d8bdeb92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8065331233280684936, guid: c9f2d5e7a4f3fce42bee1ad0d8bdeb92,
         type: 3}
       propertyPath: m_RootOrder
@@ -5808,7 +5813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 40, y: 1, z: 40}
   _horizontalSpeed: 2
   _verticalSpeed: 2
   _zoomLevel: 0
@@ -6428,6 +6433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439461038651450654, guid: 60918bfa159605343be2dccb259d67c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60918bfa159605343be2dccb259d67c3, type: 3}

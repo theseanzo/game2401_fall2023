@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CamControls : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class CamControls : MonoBehaviour
 
     [SerializeField]
     private Camera _camera; // Reference to the camera
+
+    RaycastHit _hit;
 
     void Start()
     {
@@ -119,17 +122,18 @@ public class CamControls : MonoBehaviour
 
         // Smooths the movement of the camera as it zooms in and out
         _camera.fieldOfView = Mathf.SmoothDamp(_camera.fieldOfView, _zoomLevel, ref _velocity, _smoothTime);
-
+        
     }
 
     void Update()
     {
-
-        Orbit();
-        Pan();
-        Zoom();
-
-
+        // If the mouse is not hovered over a UI element:
+        if(!EventSystem.current.IsPointerOverGameObject())
+        {
+            Orbit();
+            Pan();
+            Zoom();
+        }
 
 
         // These are the old camera controls. I will be making new ones, using these as reference. - Shaylyn

@@ -5806,6 +5806,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f2370db9819e941b060f02046332ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   _horizontalSpeed: 2
   _verticalSpeed: 2
   _zoomLevel: 0
@@ -5817,8 +5820,7 @@ MonoBehaviour:
   _rotationSensitivity: 100
   _yRotation: 0
   _xRotation: 0
-  _rotationMin: 0
-  _rotationMax: 90
+  _panSpeed: 30
   _camera: {fileID: 963194227}
 --- !u!4 &1357170618
 Transform:

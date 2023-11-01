@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CamControls : MonoBehaviour
 {
-    //[SerializeField]
-    //private Bounds bounds;
+    [SerializeField]
+    private Bounds bounds;
 
     [SerializeField]
     private float _horizontalSpeed = 2f; // Horizontal rotation speed
@@ -40,6 +40,11 @@ public class CamControls : MonoBehaviour
     [SerializeField]
     private float _xRotation = 0f; // Rotation around the X axis
 
+    private Vector3 _cameraPosition; // Camera's current position
+
+    [SerializeField]
+    private float _panSpeed = 20; // How fast the camera pans
+
     [SerializeField]
     private Camera _camera; // Reference to the camera
 
@@ -47,6 +52,9 @@ public class CamControls : MonoBehaviour
     {
         // Sets the zoom level to the orthographic size of the camera when the game starts
         _zoomLevel = _camera.fieldOfView;
+
+        // Set's the camera position variable to the current position
+        _cameraPosition = this.transform.position;
     }
 
     private void Orbit()
@@ -65,7 +73,34 @@ public class CamControls : MonoBehaviour
 
     private void Pan()
     {
- 
+        //transform.position = bounds.ClosestPoint(transform.position);
+
+        // Move camera forwards when pressing W
+        if (Input.GetKey(KeyCode.W))
+        {
+            _cameraPosition += transform.forward * _panSpeed * Time.deltaTime;
+        }
+
+        // Move camera backwards when pressing S
+        if (Input.GetKey(KeyCode.S))
+        {
+            _cameraPosition -= _panSpeed * Time.deltaTime * transform.forward;
+        }
+
+        // Move camera left when pressing A
+        if (Input.GetKey(KeyCode.A))
+        {
+            _cameraPosition -= transform.right * _panSpeed * Time.deltaTime;
+        }
+
+        // Move camera right when pressing D
+        if (Input.GetKey(KeyCode.D))
+        {
+            _cameraPosition += _panSpeed * Time.deltaTime * transform.right;
+        }
+
+        // Updates the camera's position
+        this.transform.position = _cameraPosition;
     }
 
     private void Zoom()
@@ -82,6 +117,7 @@ public class CamControls : MonoBehaviour
 
         // Smooths the movement of the camera as it zooms in and out
         _camera.fieldOfView = Mathf.SmoothDamp(_camera.fieldOfView, _zoomLevel, ref _velocity, _smoothTime);
+
     }
 
     void Update()

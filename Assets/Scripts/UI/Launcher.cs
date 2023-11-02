@@ -15,6 +15,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     #endregion
     #region Private Variables
     string _gameVersion = "1";
+    string ourRoom = "classRoom";
+    byte maxPlayers = 20;
     #endregion
     // Start is called before the first frame update
     private void Awake()
@@ -35,7 +37,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         //two situations: if we are connected or are we aren't connected already
         if (PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.JoinRandomRoom();  
+            //PhotonNetwork.JoinOrCreateRoom(ourRoom, new RoomOptions() { MaxPlayers = maxPlayers, PublishUserId = true }, null);
         }
         else
         {
@@ -48,8 +50,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     #region PUN Callbacks
     public override void OnConnectedToMaster()
     {
-        Debug.Log("We are now connected to the master server and can join a room");
-        PhotonNetwork.JoinRandomRoom();
+        Debug.LogFormat("We are now connected to the master server and can join a room with id {0} and Nickname {1}", PhotonNetwork.LocalPlayer.UserId, PhotonNetwork.NickName );
+
+        PhotonNetwork.JoinOrCreateRoom(PhotonNetwork.NickName, new RoomOptions() { MaxPlayers = maxPlayers, PublishUserId = true }, null);
     }
     public override void OnDisconnected(DisconnectCause cause)
     {
@@ -58,7 +61,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("We got error code of " + message);
-        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 4 }, null);
+        PhotonNetwork.JoinOrCreateRoom(ourRoom, new RoomOptions() { MaxPlayers = maxPlayers }, null);
     }
 
     public override void OnJoinedRoom()

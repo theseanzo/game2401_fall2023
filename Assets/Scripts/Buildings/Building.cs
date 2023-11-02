@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Photon.Pun;
+using Photon.Realtime; 
 [RequireComponent(typeof(BoxCollider), typeof(Rigidbody))]
+[RequireComponent(typeof(PhotonView), typeof(PhotonTransformView))]
 public class Building : BaseObject
 {
     public UnityEvent buildingDestroyed;

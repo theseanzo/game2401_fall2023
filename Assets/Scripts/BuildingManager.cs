@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using Photon.Pun;
+using Photon.Realtime;
 //Our building manager is going to do the job of handling our buildings being added to our scene as well as being moved in the scene
 public class BuildingManager : Singleton<BuildingManager>
 {
@@ -64,7 +65,9 @@ public class BuildingManager : Singleton<BuildingManager>
                 //let's start by creating a ray object from the ray position in the world
                 if (Physics.Raycast(mouseRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Building")))
                 {
-                    current = hitInfo.collider.GetComponent<Building>();
+                    Building building = hitInfo.collider.GetComponent<Building>();
+                    if(building.GetComponent<PhotonView>().IsMine)
+                        current = building;
                    // Debug.Log("We hit a building");
                 }
             }
@@ -86,7 +89,9 @@ public class BuildingManager : Singleton<BuildingManager>
         {
             Destroy(current.gameObject);
         }
-        current = Instantiate(building);
+        //we no longer want to create new buildings by instantiating them locally; instead they are now networked objects
+        current = PhotonNetwork.Instantiate("Buildings/" + building.name, building.transform.position, Quaternion.identity).GetComponent<Building>();
+       // current = Instantiate(building);
         current.name = building.name;
     }
 }

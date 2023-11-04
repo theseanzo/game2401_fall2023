@@ -24,4 +24,5 @@ public class CamControls : MonoBehaviour
             transform.position = bounds.ClosestPoint(transform.position);
         }
     }
+
 }

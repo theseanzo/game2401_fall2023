@@ -5786,7 +5786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1357170618}
-  - component: {fileID: 1357170617}
+  - component: {fileID: 1357170619}
   m_Layer: 0
   m_Name: CamPivot
   m_TagString: Untagged
@@ -5794,21 +5794,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1357170617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357170616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f2370db9819e941b060f02046332ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 20, y: 1, z: 20}
 --- !u!4 &1357170618
 Transform:
   m_ObjectHideFlags: 0
@@ -5825,6 +5810,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!114 &1357170619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357170616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f2370db9819e941b060f02046332ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panSpeed: 150
+  arrowKeySpeed: 10
+  boundingCollider: {fileID: 0}
+  minZoom: 2
+  maxZoom: 200
+  zoomSpeed: 500
+  boundingBoxPadding: 1
+  rotationSpeed: 30
+  scrollSpeed: 300
 --- !u!1001 &1410906868
 PrefabInstance:
   m_ObjectHideFlags: 0

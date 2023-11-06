@@ -85,6 +85,7 @@ public class Unit : BaseObject
                 if(target == null)
                 {
                     SetState(OnIdle());
+                    yield break;
                 }
                 Vector3 nextPoint = currentPath.vectorPath[currentIndex];//our vectorPath in the path is the list of points along our path
                 transform.position = Vector3.MoveTowards(transform.position, nextPoint, moveSpeed * Time.fixedDeltaTime); //we are moving according to a fixed delta time (our fixed framerate, and we use the fixed frame rate because we WaitForFixedUpdate 
@@ -132,6 +133,7 @@ public class Unit : BaseObject
             if(attackTarget == null)
             {
                 SetState(OnIdle());
+                yield break;
             }
             LookTowards(attackTarget.GetComponent<Collider>().bounds.center);
             if (lastAttackTime >= attackInterval)

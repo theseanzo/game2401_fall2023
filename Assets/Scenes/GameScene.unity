@@ -5806,9 +5806,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f2370db9819e941b060f02046332ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 20, y: 1, z: 20}
+  panSpeed: 15
+  scrollSpeed: 850
+  boundsCollider: {fileID: 0}
+  maxZoom: 30
+  minZoom: 15
+  padding: 1
+  rotationSpeed: 30
 --- !u!4 &1357170618
 Transform:
   m_ObjectHideFlags: 0

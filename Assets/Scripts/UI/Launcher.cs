@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Launcher : MonoBehaviourPunCallbacks
@@ -21,12 +22,14 @@ public class Launcher : MonoBehaviourPunCallbacks
     string _gameVersion = "1";
     string ourRoom = "classRoom";
     byte maxPlayers = 20;
+    private Dictionary<string, RoomInfo> cachedRoomList;
     Dictionary<string, GameObject> roomButtons = new Dictionary<string, GameObject>();
     #endregion
     // Start is called before the first frame update
     private void Awake()
     {
         //Our awake happens when the script is loaded
+        cachedRoomList = new Dictionary<string, RoomInfo>();
         PhotonNetwork.AutomaticallySyncScene = true; //if we have any levels in the network, we want to sync them automatically
     }
     void Start()
@@ -82,13 +85,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        int count = 0;
-        foreach(RoomInfo room in roomList)
-        {
-            Debug.LogFormat("Room id {0} and name {1}", count++, room.Name);
-        }
         ClearRoomListButtons();
-        UpdateRoomListButtons(roomList);
+        UpdateCachedRoomList(roomList);
+        UpdateRoomListButtons();
     }
     #endregion
     #region Private functions
@@ -100,14 +99,46 @@ public class Launcher : MonoBehaviourPunCallbacks
         }
         roomButtons.Clear();
     }
-    private void UpdateRoomListButtons(List<RoomInfo> roomList)
+    private void UpdateCachedRoomList(List<RoomInfo> roomList)
     {
-        foreach(RoomInfo room in roomList)
+        foreach(RoomInfo info in roomList)
+        {
+            if(!info.IsOpen || !info.IsVisible || info.RemovedFromList)
+            {
+                if (cachedRoomList.ContainsKey(info.Name))
+                {
+                    cachedRoomList.Remove(info.Name);
+                }
+                continue;
+            }
+
+            if (cachedRoomList.ContainsKey(info.Name))
+            {
+                cachedRoomList[info.Name] = info;
+            }
+            else
+            {
+                cachedRoomList.Add(info.Name, info);
+            }
+        }
+    }
+    private void UpdateRoomListButtons()
+    {
+        foreach(RoomInfo room in cachedRoomList.Values)
         {
             GameObject button = Instantiate(attackRoomButton, attackRoomButton.transform.parent);
             button.GetComponentInChildren<TMP_Text>().text = room.Name;
             button.SetActive(true);
             roomButtons.Add(room.Name, button);
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                if (PhotonNetwork.InLobby)
+                {
+                    PhotonNetwork.LeaveLobby();
+                }
+                PhotonNetwork.JoinRoom(room.Name);
+            });
+            
         }
         attackRoomButton.SetActive(false);
     }

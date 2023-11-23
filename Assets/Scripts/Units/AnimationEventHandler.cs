@@ -17,5 +17,10 @@ public class AnimationEventHandler : MonoBehaviour
         //we will need to do something here
         unit.OnAttackActionEvent();
     }
+    public void OnDestroyCharacter()
+    {
+        Debug.Log("Die");
+        unit.OnDie();
+    }
 
 }

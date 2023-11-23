@@ -60,7 +60,6 @@ public class CamControls : MonoBehaviour
     {
         Vector3 mousePosBeforeZoom = GetMouseHitPoint();
         float scrollDelta = Input.GetAxis("Mouse ScrollWheel"); //Make sure this is spelled correctly
-        Debug.Log(scrollDelta);
         zoomValue -= scrollDelta * zoomSensitivity;
         zoomValue = Mathf.Clamp(zoomValue, 0, 1);
 

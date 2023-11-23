@@ -9,15 +9,15 @@ public class Unit : BaseObject
 {
     //for our unit we're going to need a move speed; we're going to need a rotation speed, their attack range, their attack interval, their power
     [SerializeField]
-    float moveSpeed = 1f;
+    public float moveSpeed = 1f;
     [SerializeField]
     float rotationSpeed = 1f;
     [SerializeField]
     float attackRange = 1f; //basic unit needs to be up close
     [SerializeField]
-    float attackInterval = 2f; //how long before they can attack again (avoid constant attacking)
+    public float attackInterval = 2f; //how long before they can attack again (avoid constant attacking)
     [SerializeField]
-    protected int attackPower = 10;
+    public int attackPower = 10;
 
     //when we attack, we will need to keep track of when we have attacked last to see how long has elapsed
     private float lastAttackTime = 0f;//this will be used when we are attacking to make sure we wait for the interval to end

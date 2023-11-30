@@ -7,17 +7,25 @@ public class RageSpell : MonoBehaviour
     private ParticleSystem particleSystem;
 
     [SerializeField]
+    private GameObject unitParticle;
+
+    [SerializeField]
     private float increaseMoveSpeed;
     [SerializeField]
     private int increaseAttackPower;
     [SerializeField]
     private float decreaseeAttackInterval;
 
-    private Unit unit;
+    private List<GameObject> particleInChild = new List<GameObject>();
+
+    private List<Unit> affectedUnit = new List<Unit>();
+
+    private int i;
     // Start is called before the first frame update
     void Start()
     {
         particleSystem = GetComponentInChildren<ParticleSystem>();
+        i = 0;
     }
 
     // Update is called once per frame
@@ -25,30 +33,37 @@ public class RageSpell : MonoBehaviour
     {
         if (particleSystem == null)
         {
+            Debuff();            
             Destroy(gameObject);
-
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered");
-        if (other.gameObject.GetComponent<Archer>() != null)
+
+        if (other.gameObject.GetComponent<Unit>() && !other.gameObject.GetComponentInChildren<ParticleSystem>()) //Buffs units affected by a spells and makes sure it doesnt buff them twice
         {
-            unit = other.gameObject.GetComponent<Archer>();
-            unit.moveSpeed += increaseMoveSpeed;
-            unit.attackPower += increaseAttackPower;
-            unit.attackInterval -= decreaseeAttackInterval;
+            affectedUnit.Add(other.gameObject.GetComponent<Unit>());
+            particleInChild.Add(Instantiate(unitParticle, other.transform));
+            affectedUnit[i].transform.parent = particleInChild[i].transform;
+            affectedUnit[i].moveSpeed += increaseMoveSpeed;
+            affectedUnit[i].attackPower += increaseAttackPower;
+            affectedUnit[i].attackInterval -= decreaseeAttackInterval;
+            i++;
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void Debuff()//Debuff the units affected by the spell
     {
-        if (other.gameObject.GetComponent<Unit>() != null)
+        if (affectedUnit != null)
         {
-            unit = other.gameObject.GetComponent<Unit>();
-            unit.moveSpeed -= increaseMoveSpeed;
-            unit.attackPower -= increaseAttackPower;
-            unit.attackInterval += decreaseeAttackInterval;
+            for (int i = 0; i < affectedUnit.Count; i++)
+            {
+                Destroy(particleInChild[i]);
+                affectedUnit[i].moveSpeed -= increaseMoveSpeed;
+                affectedUnit[i].attackPower -= increaseAttackPower;
+                affectedUnit[i].attackInterval += decreaseeAttackInterval;
+            }
         }
+
     }
 }

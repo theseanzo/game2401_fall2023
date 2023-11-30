@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //we need all units to have a Seeker component. How do we make sure that all units will have this?
-[RequireComponent(typeof(Seeker))]
+[RequireComponent(typeof(Seeker), typeof(BoxCollider))]
 public class Unit : BaseObject
 {
     //for our unit we're going to need a move speed; we're going to need a rotation speed, their attack range, their attack interval, their power

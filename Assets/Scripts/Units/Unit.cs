@@ -18,7 +18,8 @@ public class Unit : BaseObject
     public float attackInterval = 2f; //how long before they can attack again (avoid constant attacking)
     [SerializeField]
     public int attackPower = 10;
-
+    public ParticleSystem buffParticlesPrefab;
+    public bool isBuffed = false;
     //when we attack, we will need to keep track of when we have attacked last to see how long has elapsed
     private float lastAttackTime = 0f;//this will be used when we are attacking to make sure we wait for the interval to end
 
@@ -51,7 +52,7 @@ public class Unit : BaseObject
     }
     private void SetState(IEnumerator newState) //when we change states, we stop our previous coroutine and then initialize a new one. Technically this can be done with "StopAllCoroutines()" because we only have one coroutine running, but in the case that we had more, we will only a stop a specific coroutine.
     {
-        if(currentState != null)
+        if (currentState != null)
         {
             StopCoroutine(currentState);
         }
@@ -78,43 +79,44 @@ public class Unit : BaseObject
         {
             yield return new WaitForFixedUpdate();
 
-            if(currentPath != null) //make sure we have actually found a path
+            if (currentPath != null) //make sure we have actually found a path
             {
                 //we know that, on our path, we are going to move between different points on our path and we will move according to our speed. With that, we need to simply move until we get to the end of our path
 
                 //let's make sure our current target has not been destroyed
-                if(target == null)
+                if (target == null)
                 {
                     SetState(OnIdle());
                 }
                 Vector3 nextPoint = currentPath.vectorPath[currentIndex];//our vectorPath in the path is the list of points along our path
                 transform.position = Vector3.MoveTowards(transform.position, nextPoint, moveSpeed * Time.fixedDeltaTime); //we are moving according to a fixed delta time (our fixed framerate, and we use the fixed frame rate because we WaitForFixedUpdate 
                 LookTowards(nextPoint);
-                if(transform.position == nextPoint)
+                if (transform.position == nextPoint)
                 {
                     currentIndex++; ///we have got the next point so we need to look for another point
                 }
 
-                if(currentIndex >= currentPath.vectorPath.Count)
+                if (currentIndex >= currentPath.vectorPath.Count)
                 {
                     currentIndex = 0;
                     currentPath = null;
                 }
                 //Instead of going towards the center of the building, we are going to go the closest point of the building to use; this ensures that our units will attack the sides of the building rather than the center
                 Vector3 targetPos = target.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-                if(Vector3.Distance(transform.position, targetPos) <= attackRange) //if we get within range of our building, attack
+                if (Vector3.Distance(transform.position, targetPos) <= attackRange) //if we get within range of our building, attack
                 {
                     SetState(OnAttack(target));
                 }
             }
         }
+        SetState(OnIdle());
     }
     private void LookTowards(Vector3 position)
     {
         //we are going to nneed to calculate where we are rotating towards according to our current position
         Vector3 targetDirection = position - transform.position; //the vector from our position to the position of our target
         //we only want to rotate if that value is something (i.e. if it's 0 don't rotate)
-        if(targetDirection != Vector3.zero)
+        if (targetDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime); //we are essentially blending our rotation time by our current rotation value
@@ -124,13 +126,13 @@ public class Unit : BaseObject
     IEnumerator OnAttack(Building target)
     {
         attackTarget = target;
-        while (true)
+        while (attackTarget != null)
         {
             //we want to attack our target after our interval 
 
             lastAttackTime += Time.deltaTime;
             //what do do if our building has been destroyed? We idle again
-            if(attackTarget == null)
+            if (attackTarget == null)
             {
                 SetState(OnIdle());
             }
@@ -155,10 +157,10 @@ public class Unit : BaseObject
         //we want to find the building that is closest to our character, and set that to be our current target
         float shortestDistance = Mathf.Infinity;
         Building closestBuilding = null; //currently we don't have a closest building so it is null
-        foreach(Building building in allBuildings)
+        foreach (Building building in allBuildings)
         {
             float distance = Vector3.Distance(transform.position, building.transform.position); //get the distance from our unit to the building
-            if(distance < shortestDistance)
+            if (distance < shortestDistance)
             {
                 shortestDistance = distance;
                 closestBuilding = building;
@@ -167,16 +169,50 @@ public class Unit : BaseObject
         if (closestBuilding != null)
             SetState(OnMoveToTarget(closestBuilding)); //here we are going to change our state to OnMoveToTarget using the closest building if and only if we found a building
     }
-    
+
     // Start is called before the first frame update
 
     public virtual void OnAttackActionEvent()
     {
         //this will be called by our animation, and will calculate how we do damage
     }
-    // Update is called once per frame
-    void Update()
+
+    public void ApplyBuff(float duration, float movementSpeedIncrease, int damageIncrease)
     {
-        
+        if (isBuffed == false)
+        {
+            StartCoroutine(BuffCoroutine(duration, movementSpeedIncrease, damageIncrease));
+        }
+
+    }
+
+    private IEnumerator BuffCoroutine(float duration, float movementSpeedIncrease, int damageIncrease)
+    {
+        float originalMoveSpeed = moveSpeed;
+        int originalAttackPower = attackPower;
+
+        moveSpeed += movementSpeedIncrease;
+        attackPower += damageIncrease;
+
+        // Activate the particle system
+        buffParticlesPrefab.Play();
+
+        isBuffed = true;
+
+        yield return new WaitForSeconds(duration);
+
+        // Revert the buff after the duration
+        moveSpeed = originalMoveSpeed;
+        attackPower = originalAttackPower;
+        isBuffed = false;
+
+        // Deactivate the particle system
+        buffParticlesPrefab.Stop();
+    }
+
+// Update is called once per frame
+void Update()
+    {
+
     }
 }

@@ -1439,7 +1439,7 @@ MonoBehaviour:
   moveSpeed: 1
   rotationSpeed: 1
   attackRange: 7
-  attackInterval: 5
+  attackInterval: 2
   attackPower: 10
 --- !u!95 &1022678644539852431
 Animator:

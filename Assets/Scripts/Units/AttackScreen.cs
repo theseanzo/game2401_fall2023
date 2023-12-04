@@ -6,6 +6,7 @@ public class AttackScreen : MonoBehaviour
 {
     [SerializeField]
     DynamicList unitButtons; //let's specify which unit we are going to use
+    DynamicList spellButtons;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -13,7 +14,7 @@ public class AttackScreen : MonoBehaviour
     }
     void Start()
     {
-        GameObject[] units = Resources.LoadAll<GameObject>("Units"); //grab all of the game objects from the buildings folder
+        GameObject[] units = Resources.LoadAll<GameObject>("Units"); //grab all of the game objects from the units folder
         unitButtons.CreateButtons(units);
     }
 

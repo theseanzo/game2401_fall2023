@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rotationSpeed: 1
+  rotationSpeed: 2
   attackRange: 1
   attackInterval: 2
-  attackPower: 10
-  ragePowerBoost: 20
+  attackPower: 5
+  ragePowerBoost: 10
   rageDuration: 5
 --- !u!114 &-3547903777314235938
 MonoBehaviour:
@@ -5553,7 +5553,7 @@ Animator:
   m_GameObject: {fileID: 4107233973316332086}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b7e10e6faa72e074888c402c5a76cf81, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1ee405158960f4f4391ec89f4b9f3a66, type: 2}
+  m_Controller: {fileID: 22100000, guid: e5223ff14dcb0a44dabad05338d74f6a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -9,9 +9,8 @@ public class SpellBear : Unit
     [SerializeField]
     private float rageDuration = 5f; // duration of the rage effect
     private bool isRaging = false; // flag to check if the bear is in rage mode
-    private float originalAttackPower; // to store the original attack power
+    private int originalAttackPower; // to store the original attack power
     private ParticleSystem attackParticles; // particle system for attack effects
-    private new float attackPower; // attack power, hides the base class member
 
     protected override void Start()
     {
@@ -19,14 +18,19 @@ public class SpellBear : Unit
         originalAttackPower = attackPower; // store the original attack power at start
         attackParticles = GetComponentInChildren<ParticleSystem>(); // get the attack particle system
 
-        // Start the repeating rage activation every 3 seconds
-        InvokeRepeating("ActivateRage", 0f, 3f);
+        // Start the repeating rage activation
+        StartCoroutine(RepeatRageActivation());
     }
 
-    protected override void Attack()
+    private IEnumerator RepeatRageActivation()
     {
-        base.Attack(); // call the base attack method
-        PlayAttackParticles(); // play attack particle effects
+        while (true)
+        {
+            ActivateRage();
+            yield return new WaitForSeconds(rageDuration);
+            DeactivateRage();
+            yield return new WaitForSeconds(3f); // Wait for 3 seconds before repeating
+        }
     }
 
     public void ActivateRage()
@@ -35,9 +39,8 @@ public class SpellBear : Unit
         {
             Debug.Log("Activating Rage");
             isRaging = true;
-            attackPower += ragePowerBoost; // increase attack power for rage
+            attackPower += (int)ragePowerBoost; // increase attack power for rage
             ChangeColorToRageMode(); // change color to indicate rage mode
-            Invoke("DeactivateRage", rageDuration); // schedule to end rage after duration
         }
     }
 
@@ -48,6 +51,7 @@ public class SpellBear : Unit
         attackPower = originalAttackPower; // reset attack power to original
         ResetColor(); // reset color to original
     }
+
 
     private void ChangeColorToRageMode()
     {
@@ -70,7 +74,6 @@ public class SpellBear : Unit
             renderer.material.color = Color.white; // reset to original color
         }
     }
-
     private void PlayAttackParticles()
     {
         if (attackParticles != null && attackTarget != null)
@@ -79,23 +82,28 @@ public class SpellBear : Unit
             attackParticles.Play(); // play attack particle effect
         }
     }
-
     private void StopAttackParticles()
     {
         if (attackParticles != null)
         {
-            attackParticles.Stop(); // stop playing the particle effect
+            attackParticles.Stop();
         }
     }
 
     public override void OnAttackActionEvent()
     {
-        base.OnAttackActionEvent(); // execute base class attack action event
+        base.OnAttackActionEvent();
 
         if (attackTarget != null)
         {
-            attackTarget.OnHit((int)attackPower); // apply attack power as damage to the target
-            PlayAttackParticles(); // play attack particle effects
+            attackTarget.OnHit(attackPower);
+
+            PlayAttackParticles();
+        }
+        else
+        {
+            StopAttackParticles(); 
         }
     }
+    
 }

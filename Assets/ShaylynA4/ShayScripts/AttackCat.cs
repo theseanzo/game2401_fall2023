@@ -10,7 +10,7 @@ public class AttackCat : Unit
 
     private void Awake()
     {
-        Destroy(gameObject, Lifetime); // Destroys the cat after 10 seconds
+        Destroy(gameObject, Lifetime); // Destroys the cat after a set period of time
     }
 
 }

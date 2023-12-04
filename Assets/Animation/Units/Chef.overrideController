@@ -8,4 +8,7 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Chef
   m_Controller: {fileID: 9100000, guid: 07a2527bcc99a1440a0df4b09abb681d, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 8ddd0cc218892fc4fa5838ee83fd2448,
+      type: 3}

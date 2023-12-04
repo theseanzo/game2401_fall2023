@@ -1441,6 +1441,7 @@ MonoBehaviour:
   attackRange: 7
   attackInterval: 2
   attackPower: 10
+  Cat: {fileID: 2128880269389209694, guid: baf96fe9aecbd3e4f858617fc5844caa, type: 3}
 --- !u!95 &1022678644539852431
 Animator:
   serializedVersion: 5

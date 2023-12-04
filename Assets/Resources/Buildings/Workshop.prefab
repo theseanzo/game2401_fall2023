@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1978554926248893221}
   - component: {fileID: 3142465604280063321}
   - component: {fileID: 9174251508773499615}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4834,7 +4834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8253487694982587304}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4866,7 +4866,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2058268007680502765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 5788068355506461352}
   - component: {fileID: 7841681005197677701}
   - component: {fileID: 2123523918}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5012,7 +5012,7 @@ GameObject:
   - component: {fileID: 2588138497454656793}
   - component: {fileID: 7378406047913435478}
   - component: {fileID: 3617862969822121193}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9847,7 +9847,7 @@ GameObject:
   - component: {fileID: 901170982420384280}
   - component: {fileID: 1228184663576180157}
   - component: {fileID: 7629297148542167665}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Workshop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9884,6 +9884,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77131cb2165d30240a4914d8aec7c641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   size: {x: 3, y: 3}
 --- !u!65 &1228184663576180157
 BoxCollider:
@@ -9923,7 +9926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8334372649352473059}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9956,6 +9959,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 5573396f6b8833f4dbd78bbb53d56df5, type: 3}
       propertyPath: m_Name
       value: Workshop
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5573396f6b8833f4dbd78bbb53d56df5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5573396f6b8833f4dbd78bbb53d56df5, type: 3}
       propertyPath: m_RootOrder

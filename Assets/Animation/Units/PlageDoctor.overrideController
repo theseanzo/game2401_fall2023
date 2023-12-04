@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlageDoctor
+  m_Controller: {fileID: 9100000, guid: 07a2527bcc99a1440a0df4b09abb681d, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 90dd4e79beaa4be40a2a92fd4f55b8f0, type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: e15d540e93d60b84d873b9c22115515e,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 233a08ed8c0ec624b84c7197f5faa6ff,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 233a08ed8c0ec624b84c7197f5faa6ff,
+      type: 3}

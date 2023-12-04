@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6549294174014950574}
   - component: {fileID: 6549294174014950560}
   - component: {fileID: 6549294174014950575}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Window Light(r1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6549294174139111489}
   - component: {fileID: 6549294174139111490}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnvironmentLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6549294174209957765}
   - component: {fileID: 6549294174209957766}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnvironmentLight (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 6549294174261195809}
   - component: {fileID: 6549294174261195811}
   - component: {fileID: 6549294174261195810}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Window Light(l2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 6549294174401019534}
   - component: {fileID: 6549294174401019520}
   - component: {fileID: 6549294174401019535}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5246,7 +5246,7 @@ GameObject:
   - component: {fileID: 6549294174490070331}
   - component: {fileID: 6549294174490070333}
   - component: {fileID: 6549294174490070332}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10070,7 +10070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6549294174671292056}
   - component: {fileID: 6549294174671292057}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnvironmentLight2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10165,7 +10165,7 @@ GameObject:
   - component: {fileID: 6549294174758002941}
   - component: {fileID: 6549294174758002943}
   - component: {fileID: 6549294174758002942}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Window Light(R2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10276,7 +10276,7 @@ GameObject:
   - component: {fileID: 6549294175494493152}
   - component: {fileID: 6549294175494493154}
   - component: {fileID: 6549294175494493153}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15102,7 +15102,7 @@ GameObject:
   - component: {fileID: -4891451824277834129}
   - component: {fileID: 9141932882143524566}
   - component: {fileID: 8229188226592045292}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Barracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15147,6 +15147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18b1af59bb16a54caadc108f05e98bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   size: {x: 3, y: 3}
 --- !u!65 &9141932882143524566
 BoxCollider:
@@ -15188,7 +15191,7 @@ GameObject:
   - component: {fileID: 6549294175866816982}
   - component: {fileID: 6549294175866816968}
   - component: {fileID: 6549294175866816983}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Window Light(l1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15298,6 +15301,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: e2f28d7d7478cb64597ebb9077abfe6e, type: 3}
       propertyPath: m_Name
       value: Barracks (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e2f28d7d7478cb64597ebb9077abfe6e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e2f28d7d7478cb64597ebb9077abfe6e, type: 3}
       propertyPath: m_RootOrder

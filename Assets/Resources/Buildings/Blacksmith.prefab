@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6532373725590579340}
   - component: {fileID: 6532373725590579339}
   - component: {fileID: 6532373725590579341}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 6532373725743833293}
   - component: {fileID: 1588621446363295248}
   - component: {fileID: 8701573719573425472}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Blacksmith
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,6 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5683db76d6f30142b9126873e7ad822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   size: {x: 3, y: 3}
 --- !u!65 &1588621446363295248
 BoxCollider:
@@ -200,6 +203,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: a43f0d6131f84de40b182eb70bb23b87, type: 3}
       propertyPath: m_Name
       value: Blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a43f0d6131f84de40b182eb70bb23b87, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a43f0d6131f84de40b182eb70bb23b87, type: 3}
       propertyPath: m_RootOrder
@@ -263,6 +270,10 @@ PrefabInstance:
     - target: {fileID: 1735024089641582, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
       propertyPath: m_Name
       value: Steam
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735024089641582, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4221402037530588, guid: 378b2c30ef426554495292cb902cb8f4, type: 3}
       propertyPath: m_RootOrder

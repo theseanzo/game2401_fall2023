@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6603020886373911556}
   - component: {fileID: 4099423681681539096}
   - component: {fileID: 1597056818846683013}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,6 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1fea300390b55448776bf5f13ce67f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   size: {x: 6, y: 6}
 --- !u!65 &4099423681681539096
 BoxCollider:
@@ -110,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3947122426047527524}
   - component: {fileID: 3947122426047527525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3947122426051259464}
   - component: {fileID: 3947122426051259465}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3947122426629252402}
   - component: {fileID: 3947122426629252403}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Horsehead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 0c6eb60ad59a81145839dbc6dedcbc3f, type: 3}
       propertyPath: m_Name
       value: Stables
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0c6eb60ad59a81145839dbc6dedcbc3f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0c6eb60ad59a81145839dbc6dedcbc3f, type: 3}
       propertyPath: m_RootOrder
@@ -427,6 +434,30 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
       propertyPath: m_Name
       value: Horsemask1_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100048, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 035accde26617884d8915b4fc64b3d70, type: 3}
       propertyPath: m_RootOrder

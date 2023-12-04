@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1184309244}
   - component: {fileID: 1184309246}
   - component: {fileID: 1184309245}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4836,7 +4836,7 @@ GameObject:
   - component: {fileID: 8328504803836953817}
   - component: {fileID: 3557843157939731641}
   - component: {fileID: 3322471306099553242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9664,7 +9664,7 @@ GameObject:
   - component: {fileID: -8068648467243401897}
   - component: {fileID: 5955581159180069177}
   - component: {fileID: 2687925591872909487}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9753,6 +9753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce4e7883a45a0c4a83c63cc12dd6d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   size: {x: 4, y: 4}
 --- !u!65 &5955581159180069177
 BoxCollider:
@@ -9794,7 +9797,7 @@ GameObject:
   - component: {fileID: 6769127970994676506}
   - component: {fileID: 3731693805942148909}
   - component: {fileID: 1922511384402183447}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14618,7 +14621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4638106306032272917}
   - component: {fileID: 7175331340455425961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14713,7 +14716,7 @@ GameObject:
   - component: {fileID: 1500199017112737133}
   - component: {fileID: 3477676401670033260}
   - component: {fileID: 2287355257872441755}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

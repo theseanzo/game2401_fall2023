@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class Catboy : Unit
 {
+    // He points with such sass and fervor that he does (a little bit of) damage to buildings.
+
     public GameObject Cat;
+
+    [SerializeField]
+    private float _firstNumber = -10f;
+
+    [SerializeField]
+    private float _secondNumber = 11f;
+
+    [SerializeField]
+    private float _thirdNumber = 5f;
 
     public override void OnAttackActionEvent() // Overriding the parent's function
     {
         base.OnAttackActionEvent(); // Completes the parent's OnAttackActionEvent
         if (attackTarget != null) // Checks to make sure there is a target
         {
-            attackTarget.OnHit(attackPower);
+            attackTarget.OnHit(attackPower); // Calculates the damage (I think)
 
-            Instantiate(Cat, new Vector3(0, 0, 0), Quaternion.identity);
+            Vector3 spawnPosition = new Vector3(Random.Range(_firstNumber, _secondNumber), _thirdNumber, Random.Range(_firstNumber, _secondNumber)); // Calculates where to spawn the cat
+
+           // Instantiate(Cat, spawnPosition, Quaternion.identity); // Instantiates the cat
         }
     }
 }

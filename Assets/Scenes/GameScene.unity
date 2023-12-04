@@ -6521,6 +6521,7 @@ MonoBehaviour:
   smoothing: 0.1
   zoomToMouse: 1
   panSpeed: 0.5
+  rotationSpeed: 1
 --- !u!4 &1357170618
 Transform:
   m_ObjectHideFlags: 0

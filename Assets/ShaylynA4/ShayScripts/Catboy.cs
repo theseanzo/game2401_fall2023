@@ -26,7 +26,7 @@ public class Catboy : Unit
 
             Vector3 spawnPosition = new Vector3(Random.Range(_firstNumber, _secondNumber), _thirdNumber, Random.Range(_firstNumber, _secondNumber)); // Calculates where to spawn the cat
 
-           // Instantiate(Cat, spawnPosition, Quaternion.identity); // Instantiates the cat
+            Instantiate(Cat, spawnPosition, Quaternion.identity); // Instantiates the cat
         }
     }
 }

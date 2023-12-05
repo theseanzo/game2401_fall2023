@@ -5,22 +5,51 @@ using UnityEngine;
 public class Giant : Unit
 {
     [SerializeField]
-    Transform arrowStartPos;
+    Transform startPos;
+    [SerializeField] private float _startingAttackInterval = 3f;
+    private float _endingAttackInterval;
+    [SerializeField] private Transform _projectileModel;
+
+    private Building _consistentTarget;
     public override void OnAttackActionEvent()
     {
         base.OnAttackActionEvent();
         if (attackTarget != null)
         {
-            PoolObject arrow = PoolManager.Instance.Spawn("ThrownBear"); //grab an arrow
-            arrow.transform.position = arrowStartPos.position;
-            arrow.transform.rotation = arrowStartPos.rotation; //set up our arrow to follow the arrowStartPos and rotation
-            arrow.GetComponent<SpawningProjectile>().Init(attackTarget, attackPower);
+            _projectileModel?.gameObject.SetActive(false);
+            PoolObject bear = PoolManager.Instance.Spawn("ThrownBear"); //gets bear and throws it
+            bear.transform.position = startPos.position;
+            bear.transform.rotation = startPos.rotation; 
+            bear.GetComponent<SpawningProjectile>().Init(attackTarget, attackPower);
+            if(attackTarget != _consistentTarget)//sets the consistent target to its current target to slow its next attacks on that building
+            {
+                _consistentTarget = attackTarget;
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
         
+        _projectileModel?.gameObject.SetActive(false);
+        _endingAttackInterval = attackInterval;
+        attackInterval = _startingAttackInterval;
+    }
+    void Update() //giant should make its first attack faster than its follow up attacks on each building
+    {
+        if(attackTarget != _consistentTarget && attackTarget != null)
+        {
+            attackInterval = _startingAttackInterval;
+        }
+        else
+        {
+            attackInterval = _endingAttackInterval;
+        }
+    }
+
+    protected override void Attack()
+    {
+        base.Attack();
+        _projectileModel?.gameObject.SetActive(true);
     }
 }

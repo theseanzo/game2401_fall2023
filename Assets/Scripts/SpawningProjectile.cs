@@ -18,8 +18,7 @@ public class SpawningProjectile : PoolObject
         attackTarget = target;
         //find the location we are attacking
         Vector3 targetPos =  target.GetComponent<Collider>().ClosestPoint(startPos);
-        targetPos = targetPos + (-_spawnDistance * (targetPos - startPos).normalized);
-        targetPos.y = 0.01f;
+        targetPos = targetPos + (-_spawnDistance * (targetPos - startPos).normalized); // gets point between starting position and target that is X distance away from the building
         transform.LookAt(targetPos);
         Tweener moveTween = transform.DOMove(targetPos, speed); //notice that we don't provide a duration and we only provide a speed; the reason for this is that we don't want a fixed duration in case objects are farther or closer
         moveTween.SetSpeedBased(true);//make sure that we are setting the tween to be speed based
@@ -28,7 +27,6 @@ public class SpawningProjectile : PoolObject
     private void OnProjectileArrived() //we want this function to be called when we actually make it to our target
     {
         Instantiate(_unit, transform.position, transform.rotation);
-        attackTarget?.OnHit(attackPower);//the ? checks to make sure our attackTarget is not null
         OnDeSpawn();
     }
     // Start is called before the first frame update

@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Chef : Unit
 {
-    // Start is called before the first frame update
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    //let's override the OnAttackActionEvent and do damage to our target
+    [SerializeField]
+    Transform fireStartPos;
+    //the chef will be base on the archer since I was thinking of the chef making fire because he can cook, but can't figure how to make him do a ring of fire so I settle with throwing a fireball
     public override void OnAttackActionEvent()
     {
-        base.OnAttackActionEvent(); //first let's do the parent's OnAttackActionEvent (just in case)
-        if (attackTarget != null)//make sure the target has not been destroyed
+        base.OnAttackActionEvent();
+        if (attackTarget != null)
         {
-            attackTarget.OnHit(attackPower);
+            PoolObject fire = PoolManager.Instance.Spawn("Fire"); //get a fireball
+            fire.transform.position = fireStartPos.position;
+            fire.transform.rotation = fireStartPos.rotation;
+            fire.GetComponent<Projectile>().Init(attackTarget, attackPower);
         }
     }
 }

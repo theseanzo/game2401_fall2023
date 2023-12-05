@@ -18,6 +18,14 @@ public class Unit : BaseObject
     float attackInterval = 2f; //how long before they can attack again (avoid constant attacking)
     [SerializeField]
     protected int attackPower = 10;
+    [SerializeField]
+    private float enragedMoveSpeedMultiplier = 2f; // Factor by which move speed is increased when enraged
+    [SerializeField]
+    private float enragedAttackPowerMultiplier = 1.5f; // Factor by which attack power is increased when enraged
+    private bool isEnraged = false;
+    private float normalMoveSpeed; // To store the normal move speed
+    private int normalAttackPower; // To store the normal attack power
+
 
     //when we attack, we will need to keep track of when we have attacked last to see how long has elapsed
     private float lastAttackTime = 0f;//this will be used when we are attacking to make sure we wait for the interval to end
@@ -36,7 +44,8 @@ public class Unit : BaseObject
     protected override void Start()
     {
         base.Start();
-        //we need to set up our last position, our seeker, our animator and then set the current state
+        normalMoveSpeed = moveSpeed;
+        normalAttackPower = attackPower;
         lastPos = transform.position;  //where we were last seen
         seeker = GetComponent<Seeker>(); //find the seeker and set it up
         anim = GetComponentInChildren<Animator>(); //find the animator in the children (it's in the child components because our main unit does not have an animator, since the animator is on the model
@@ -119,6 +128,24 @@ public class Unit : BaseObject
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime); //we are essentially blending our rotation time by our current rotation value
         }
+    }
+    public void BecomeEnraged(float duration)
+    {
+        if (!isEnraged)
+        {
+            isEnraged = true;
+            moveSpeed *= enragedMoveSpeedMultiplier;
+            attackPower = (int)(attackPower * enragedAttackPowerMultiplier);
+            StartCoroutine(ResetEnrage(duration));
+        }
+    }
+
+    private IEnumerator ResetEnrage(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        moveSpeed = normalMoveSpeed;
+        attackPower = normalAttackPower;
+        isEnraged = false;
     }
 
     IEnumerator OnAttack(Building target)

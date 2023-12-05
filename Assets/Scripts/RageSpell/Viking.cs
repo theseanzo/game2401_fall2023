@@ -8,8 +8,8 @@ public class Viking : Unit
     private float speedBoost = 2f; // Speed increase factor when speeding
     [SerializeField]
     private float speedDuration = 5f; // Duration of the increased speed state
-    private bool isSpeeding = false; // Tracks if Pekka is in speed mode
-    private float baseRunSpeed; // To store Pekka's base run speed
+    private bool isSpeeding = false; // Tracks if Viking is in speed mode
+    private float baseRunSpeed; // To store Viking's base run speed
     private ParticleSystem speedEffectParticles; // Particle system for speed effects
 
     // Add a runSpeed property
@@ -43,7 +43,7 @@ public class Viking : Unit
     {
         if (!isSpeeding)
         {
-            Debug.Log("Pekka is now speeding!");
+            Debug.Log("Viking is now speeding!");
             isSpeeding = true;
             runSpeed *= speedBoost; // Increase run speed in speed mode
             ApplySpeedAppearance(); // Change appearance for speed mode
@@ -52,7 +52,7 @@ public class Viking : Unit
 
     private void ExitSpeedState()
     {
-        Debug.Log("Pekka's speed burst has ended.");
+        Debug.Log("Viking's speed burst has ended.");
         isSpeeding = false;
         runSpeed = baseRunSpeed; // Revert run speed
         RevertAppearance(); // Return to normal appearance
@@ -60,7 +60,7 @@ public class Viking : Unit
 
     private void ApplySpeedAppearance()
     {
-        Transform targetTransform = transform.Find("PekkaModel");
+        Transform targetTransform = transform.Find("VikingModel");
         if (targetTransform != null)
         {
             Renderer renderer = targetTransform.GetComponent<Renderer>();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuakeSpell : MonoBehaviour
+public class RageSpell : MonoBehaviour
 {
     private Vector3 targetPosition;
 

@@ -16,7 +16,7 @@ public class SpeedBoostSpell : MonoBehaviour
 
     [Header("Circle Drawing Settings")]
     [SerializeField]
-    private Material circleMaterial; // Assign a material for the circle in the Inspector.
+    private Material circleMaterial;
 
     private GameObject newSpeedParticlesPrefab;
 
@@ -31,26 +31,22 @@ public class SpeedBoostSpell : MonoBehaviour
 
     private void CastSpeedBoostSpell()
     {
-        // Raycast to the mouse position on the terrain (adjust the layer mask as needed).
+        // Raycast to the mouse position on the terrain
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Terrain")))
         {
-            // Instantiate particle system at the spell's position.
             InstantiateSpellEffect(hit.point);
 
-            // Draw a circle at the spell's position.
             DrawCircle(hit.point);
 
-            // Apply the speed boost to units in the area.
             StartCoroutine(ApplySpeedBoost(hit.point));
         }
     }
 
     private void InstantiateSpellEffect(Vector3 position)
     {
-        // Instantiate your particle system or visual effect at the specified position.
         newSpeedParticlesPrefab = Instantiate(speedParticlesPrefab, position, Quaternion.identity);
     }
 
@@ -90,6 +86,8 @@ public class SpeedBoostSpell : MonoBehaviour
 
         Debug.Log("Number of hits found: " + hits.Length);
 
+        Dictionary<Unit, float> originalSpeeds = new Dictionary<Unit, float>();
+
         foreach (RaycastHit hit in hits)
         {
             Collider collider = hit.collider;
@@ -99,31 +97,28 @@ public class SpeedBoostSpell : MonoBehaviour
             {
                 Debug.Log("Found Unit: " + unit.gameObject.name);
 
+                // Store the original speed before applying the boost
+                originalSpeeds[unit] = unit.moveSpeed;
+
                 unit.StartCoroutine(SpeedBoostEffect(unit));
             }
         }
 
-        // Wait for the spell duration.
         yield return new WaitForSeconds(spellDuration);
 
-        // Clear the circle drawing after the duration.
+        // Delete the circle drawing after the duration.
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
         if (lineRenderer)
         {
             Destroy(lineRenderer);
         }
 
-        // Remove the speed boost after the duration.
-        foreach (RaycastHit hit in hits)
+        // Go back to the original speed after the duration.
+        foreach (var speed in originalSpeeds)
         {
-            Unit unit = hit.collider.GetComponent<Unit>();
-            if (unit != null)
-            {
-                unit.moveSpeed /= speedBoostMultiplier;
-            }
+            speed.Key.moveSpeed = speed.Value;
         }
 
-        // Destroy the instantiated particle system.
         Destroy(newSpeedParticlesPrefab);
     }
 

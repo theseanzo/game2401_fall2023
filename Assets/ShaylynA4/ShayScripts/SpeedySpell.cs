@@ -5,11 +5,6 @@ using UnityEngine.Events;
 
 public class SpeedySpell : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.gameObject.GetComponent<Unit>())
-        {
 
-        }
-    }
+    
 }

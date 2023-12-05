@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpellManager : MonoBehaviour
@@ -34,13 +35,13 @@ public class SpellManager : MonoBehaviour
             int keyNum = FindKey();
             if (keyNum >= 0)
             {
-                _current = spell[keyNum];
+                SetCurrent(keyNum);
             }
         }
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        //we need to deal with placing a building before we deal with selecting or releasing
-        if (_current != null)//if we have selected a building
+        
+        if (_current != null)
         {
             if (Physics.Raycast(mouseRay, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Terrain")))
             //if we are on the current terrain, continue
@@ -53,11 +54,16 @@ public class SpellManager : MonoBehaviour
             }
 
         }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            _current?.Cast();
+        }
     }
-        private int FindKey()
+        private int FindKey() //finds if the pressed key is a num key and returns an associated value
         {
             int index = -1;
-            foreach (int i in keyCodes)
+            for(int i = 0; i < keyCodes.Length; i++)
             {
                 if (Input.GetKeyDown(keyCodes[i]))
                 {
@@ -68,5 +74,12 @@ public class SpellManager : MonoBehaviour
             }
             return index;
         }
-    
+    private void SetCurrent(int num) //sets your currently selected spell
+    {
+        if (_current != null)
+        {
+            Destroy(_current.gameObject);
+        }
+        _current = Instantiate(spell[num]);
+    }
 }

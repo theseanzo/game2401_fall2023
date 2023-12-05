@@ -16,11 +16,11 @@ public class Giant : Unit
         base.OnAttackActionEvent();
         if (attackTarget != null)
         {
-            _projectileModel?.gameObject.SetActive(false);
+            _projectileModel?.gameObject.SetActive(false); //hides the held bear on the giants model
             PoolObject bear = PoolManager.Instance.Spawn("ThrownBear"); //gets bear and throws it
             bear.transform.position = startPos.position;
             bear.transform.rotation = startPos.rotation; 
-            bear.GetComponent<SpawningProjectile>().Init(attackTarget, attackPower);
+            bear.GetComponent<SpawningProjectile>().Init(attackTarget);
             if(attackTarget != _consistentTarget)//sets the consistent target to its current target to slow its next attacks on that building
             {
                 _consistentTarget = attackTarget;
@@ -30,7 +30,7 @@ public class Giant : Unit
 
     private void Awake()
     {
-        
+        //changes attack interval based on wheteher its attacked the same building multiple times or not
         _projectileModel?.gameObject.SetActive(false);
         _endingAttackInterval = attackInterval;
         attackInterval = _startingAttackInterval;

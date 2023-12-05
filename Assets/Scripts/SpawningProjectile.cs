@@ -10,11 +10,10 @@ public class SpawningProjectile : PoolObject
     [SerializeField] private Unit _unit;
     [SerializeField] private float _spawnDistance = 3f;
     private Vector3 startPos;
-    private int attackPower;
+    
     private BaseObject attackTarget;
-    public void Init(BaseObject target, int power)
+    public void Init(BaseObject target)
     {
-        attackPower = power;
         attackTarget = target;
         //find the location we are attacking
         Vector3 targetPos =  target.GetComponent<Collider>().ClosestPoint(startPos);

@@ -35,3 +35,4 @@ public class AttackManager : Singleton<AttackManager>
         }
     }
 }
+

@@ -19,6 +19,8 @@ public class Unit : BaseObject
     [SerializeField]
     public int attackPower = 10;
     public ParticleSystem buffParticlesPrefab;
+    public ParticleSystem ConfusedParticle;
+    public AudioSource Confused;
     public bool isBuffed = false;
     //when we attack, we will need to keep track of when we have attacked last to see how long has elapsed
     private float lastAttackTime = 0f;//this will be used when we are attacking to make sure we wait for the interval to end
@@ -32,6 +34,10 @@ public class Unit : BaseObject
     private int currentIndex = 0;
     private Coroutine currentState;
     private Vector3 lastPos;
+    private float originalMoveSpeed;
+    private int originalAttackPower;
+    private bool isMovementPaused = false;
+    private Coroutine previousState; //To store the previous state, helps to resume after being offended
     protected Building attackTarget; //we could also set this to be a BaseObject in the future if we want to include Unit combat
 
     protected override void Start()
@@ -54,6 +60,7 @@ public class Unit : BaseObject
     {
         if (currentState != null)
         {
+            previousState = currentState;
             StopCoroutine(currentState);
         }
         currentState = StartCoroutine(newState);
@@ -188,8 +195,8 @@ public class Unit : BaseObject
 
     private IEnumerator BuffCoroutine(float duration, float movementSpeedIncrease, int damageIncrease)
     {
-        float originalMoveSpeed = moveSpeed;
-        int originalAttackPower = attackPower;
+        originalMoveSpeed = moveSpeed;
+        originalAttackPower = attackPower;
 
         moveSpeed += movementSpeedIncrease;
         attackPower += damageIncrease;
@@ -210,8 +217,53 @@ public class Unit : BaseObject
         buffParticlesPrefab.Stop();
     }
 
-// Update is called once per frame
-void Update()
+    public void StopMovementForDuration(float duration)
+    {
+        if (!isMovementPaused)
+        {
+            isMovementPaused = true;
+            StartCoroutine(StopMovementCoroutine(duration));
+        }
+    }
+
+    private IEnumerator StopMovementCoroutine(float duration)
+    {
+        // Stop the current coroutine to prevent conflicts
+        if (currentState != null)
+        {
+            StopCoroutine(currentState);
+        }
+        originalMoveSpeed = moveSpeed;
+        moveSpeed = 0f;
+        //play confused effects and audio
+        ConfusedParticle.Play();
+        Confused.Play();
+        yield return new WaitForSeconds(duration);
+        moveSpeed = originalMoveSpeed;
+        ResumeMovement();
+    }
+
+    public void ResumeMovement()
+    {
+        // return back to original speed
+        moveSpeed = originalMoveSpeed;
+        //stop confused effects and audio
+        ConfusedParticle.Stop();
+        Confused.Stop();
+        if (previousState != null)
+        {
+            currentState = previousState;
+            previousState = null;
+        }
+        else
+        {
+            SetState(OnIdle());
+        }   
+    }
+
+
+    // Update is called once per frame
+    void Update()
     {
 
     }

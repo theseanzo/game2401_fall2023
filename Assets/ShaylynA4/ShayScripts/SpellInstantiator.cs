@@ -8,6 +8,7 @@ public class SpellInstantiator : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         Spell = GameObject.Find("ShaySpeedySpell");
     }
 

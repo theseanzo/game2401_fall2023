@@ -6461,7 +6461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f380341b317bc741923b6ac0e81eed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBoostMultiplier: 10
+  speedBoostMultiplier: 2
   spellDuration: 5
   spellRadius: 5
   speedParticlesPrefab: {fileID: 676028150557829203, guid: effaaa665bce18747b546d1bc5c10965,

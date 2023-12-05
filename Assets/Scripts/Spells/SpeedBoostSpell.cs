@@ -85,16 +85,20 @@ public class SpeedBoostSpell : MonoBehaviour
 
     private IEnumerator ApplySpeedBoost(Vector3 spellPosition)
     {
-        // Find all units within a certain radius of the spell position.
-        Collider[] colliders = Physics.OverlapSphere(spellPosition, spellRadius, LayerMask.GetMask("Units"));
+        // Cast a sphere and get all hits within the radius
+        RaycastHit[] hits = Physics.SphereCastAll(spellPosition, spellRadius, Vector3.up, Mathf.Infinity);
 
-        foreach (Collider collider in colliders)
+        Debug.Log("Number of hits found: " + hits.Length);
+
+        foreach (RaycastHit hit in hits)
         {
-            // Check if the collider has a Unit script.
+            Collider collider = hit.collider;
             Unit unit = collider.GetComponent<Unit>();
+
             if (unit != null)
             {
-                // Apply the speed boost to the unit.
+                Debug.Log("Found Unit: " + unit.gameObject.name);
+
                 unit.StartCoroutine(SpeedBoostEffect(unit));
             }
         }
@@ -110,9 +114,9 @@ public class SpeedBoostSpell : MonoBehaviour
         }
 
         // Remove the speed boost after the duration.
-        foreach (Collider collider in colliders)
+        foreach (RaycastHit hit in hits)
         {
-            Unit unit = collider.GetComponent<Unit>();
+            Unit unit = hit.collider.GetComponent<Unit>();
             if (unit != null)
             {
                 unit.moveSpeed /= speedBoostMultiplier;

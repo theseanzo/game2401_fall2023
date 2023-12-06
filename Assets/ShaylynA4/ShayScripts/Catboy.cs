@@ -29,4 +29,5 @@ public class Catboy : Unit
             Instantiate(Cat, spawnPosition, Quaternion.identity); // Instantiates the cat
         }
     }
+
 }

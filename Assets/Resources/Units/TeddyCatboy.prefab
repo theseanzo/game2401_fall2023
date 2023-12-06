@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede35a2a9a58bdd409927f0c6397bd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1
   rotationSpeed: 3
   attackRange: 7
   attackInterval: 2
@@ -1445,6 +1445,7 @@ MonoBehaviour:
   _firstNumber: -10
   _secondNumber: 11
   _thirdNumber: 5
+  _multiplier: 5
 --- !u!95 &1022678644539852431
 Animator:
   serializedVersion: 5

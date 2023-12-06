@@ -6,11 +6,6 @@ public class SpellInstantiator : MonoBehaviour
 {
     public GameObject Spell;
 
-    private void Awake()
-    {
-       // DontDestroyOnLoad(this); // Makes sure the object containing this script isn't destroyed on load
-        //Spell = GameObject.Find("ShaySpeedySpell"); // Finds the spell prefab
-    }
 
     void Update()
     {

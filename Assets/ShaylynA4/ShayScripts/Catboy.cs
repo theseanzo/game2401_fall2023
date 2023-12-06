@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Catboy : Unit
 {
-    // He points with such sass and fervor that he does (a little bit of) damage to buildings.
+    // He points with such sass and fervor that he does damage to buildings.
 
     public GameObject Cat;
 

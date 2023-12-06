@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackCat : Unit
 {
-    // These were also supposed to attack, but I'm not sure I can do that since they aren't animated (and aren't humanoid.) Their purpose is now to swarm buildings and be annoying.
+    // These were also supposed to attack, but I'm not sure I can do that since they aren't animated (and aren't humanoid.) Their purpose is now to swarm buildings and be annoying. And meow. They meow a lot. It was bothering ME after a while. Sorry.
 
     public float Lifetime = 10f;
 

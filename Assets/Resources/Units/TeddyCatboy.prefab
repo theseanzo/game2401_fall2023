@@ -1422,8 +1422,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.9227672, y: 3.1134472, z: 1.6610904}
+  m_Center: {x: -0.010026455, y: 0.5205116, z: -0.050759435}
 --- !u!114 &1351881277592817583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1445,7 +1445,6 @@ MonoBehaviour:
   _firstNumber: -10
   _secondNumber: 11
   _thirdNumber: 5
-  _multiplier: 5
 --- !u!95 &1022678644539852431
 Animator:
   serializedVersion: 5

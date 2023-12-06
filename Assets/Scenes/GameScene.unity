@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5c9add16f77d244ac053bc3f36abf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spell: {fileID: 290725963788530438, guid: f9ab59e12bf6be041a355697ee8c1cfa, type: 3}
+  Spell: {fileID: 8201478924296610066, guid: ebc96cd45ca593b498c69dc4d62f6a73, type: 3}
 --- !u!1 &245351237
 GameObject:
   m_ObjectHideFlags: 0

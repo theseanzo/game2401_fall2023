@@ -6521,6 +6521,7 @@ MonoBehaviour:
   smoothing: 0.1
   zoomToMouse: 1
   panSpeed: 0.5
+  rotationSpeed: 1
 --- !u!4 &1357170618
 Transform:
   m_ObjectHideFlags: 0
@@ -7340,6 +7341,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450905164}
   m_CullTransparentMesh: 1
+--- !u!1 &1492883277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1492883279}
+  - component: {fileID: 1492883278}
+  m_Layer: 0
+  m_Name: '[SpellManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1492883278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492883277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6654afbfdf3115b47b1a873cb3cea3ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell: {fileID: 19779577994564918, guid: 4e57c3cf438191847848bf33efe18e9a, type: 3}
+  cooldownDuration: 2
+--- !u!4 &1492883279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492883277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2404425, y: 18.489227, z: -18.711765}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1626024433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7751316300203203063, guid: 1e6b7907340150f44a24b5f94c0640df,

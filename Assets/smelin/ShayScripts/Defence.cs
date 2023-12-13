@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Defence : MonoBehaviour
 {
-    public int NewMoveSpeed = 10;
+    public float NewMoveSpeed = 0.5f;
+    public float NewAttackInterval = 3.5f;
+
     public ParticleSystem Indicator;
+
     public ParticleSystem Cone;
-    private bool _affected = false;
+
+    private bool _affected = false; // Whether or not the Units are affected by the building
+
+    [SerializeField]
+    private Transform _theCones;
 
     void Awake()
     {
-        Cone = GetComponentInChildren<ParticleSystem>();
-    }
-
-    void Update()
-    {
-        
+        Cone = GetComponentInChildren<ParticleSystem>(); // Finds the Particle System
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +28,12 @@ public class Defence : MonoBehaviour
         if (unit != null) // If the object is a Unit
         {
             _affected = true;
-            Cone.Play();
+            Cone?.Play(); // Plays the Particle System on the building (as long as there is one)
+            transform.GetChild(0)?.gameObject.SetActive(true); // Sets the child of this object (the empty object holding the cone carousel) active (as long as it exists)
+            
+            // The spinning cones have made the Unit dizzy!
+            unit.moveSpeed = NewMoveSpeed; // He's struggling to move!
+            unit.attackInterval = NewAttackInterval; // He can't focus on his attacks!
             
         }
         else

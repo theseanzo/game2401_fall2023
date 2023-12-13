@@ -5,7 +5,7 @@ using UnityEngine;
 public class ConeSpin : MonoBehaviour
 {
     [SerializeField]
-    private float _rotationSpeed = 500;
+    private float _rotationSpeed = 500; // WHEEEEEEEEE
 
     void Update()
     {

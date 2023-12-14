@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Templev2 : Building
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ParticleSystem damageEffect;
+    public override void OnHit(int damage)
     {
+        base.OnHit(damage);
         
+        damageEffect.Play();
     }
 
     // Update is called once per frame

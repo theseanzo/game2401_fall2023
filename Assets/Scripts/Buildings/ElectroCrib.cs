@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class ElectroCrib : Building
 {
-    [SerializeField]
-    private int attackPower = 100;
-    [SerializeField]
-    private float attackRange = 10f;
-    [SerializeField]
-    private float attackInterval = 1f;
-    [SerializeField]
-    private Transform fireBallPos;
-
+    [SerializeField] private float attackPower = 100;
+    [SerializeField] private float attackRange = 10f;
+    [SerializeField] private float attackInterval = 1f;
+    [SerializeField] private Transform fireBallPos;
+    [SerializeField] GameObject damageParticle;
+    [SerializeField] ParticleSystem hitParticle;
     Unit attackTarget;
-    GameObject damageParticle;
 
     float time;
     private void Awake()
@@ -48,8 +44,12 @@ public class ElectroCrib : Building
 
     private void CreateDamageEffect(Unit unit)
     {
-       // GameObject effect = Instantiate(damageParticle, unit.transform.position, Quaternion.identity);
-       // effect.transform.parent = unit.transform;
+        Vector3 offset = new Vector3(0, 1, 0);
+        Quaternion rotation = Quaternion.Euler(90f,0, 0);
+
+        GameObject effect = Instantiate(damageParticle, unit.transform.position + offset , rotation);
+
+        effect.transform.parent = unit.transform;
     }
 
     private void AttackTarget()
@@ -59,10 +59,16 @@ public class ElectroCrib : Building
             PoolObject fireball = PoolManager.Instance.Spawn("FireBall");
             fireball.transform.position = fireBallPos.position;
             fireball.transform.rotation = fireBallPos.rotation;
-            fireball.GetComponent<Projectile>().Init(attackTarget, attackPower);
+            fireball.GetComponent<Projectile>().Init(attackTarget, (int)attackPower);
         }
     }
-     private void OnDrawGizmos()
+    public override void OnHit(int damage)
+    {
+        base.OnHit(damage);
+        // Additional functionality specific to ElectroCrib's OnHit if needed
+        hitParticle.Play();
+    }
+    private void OnDrawGizmos()
      {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);

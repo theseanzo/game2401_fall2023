@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class smelin_Cone : Building
+public class smelinCone : Building
 {
     private void Awake()
     {

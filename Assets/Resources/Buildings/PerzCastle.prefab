@@ -285,7 +285,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 9
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9706,7 +9706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4991203699037787107}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.9100003}
+  m_LocalPosition: {x: -0.01, y: 0, z: 4.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9824,7 +9824,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364720314364593510}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.284, y: 4.198, z: -0.273}
+  m_LocalPosition: {x: 0.135, y: 4.59, z: -0.34}
   m_LocalScale: {x: 0.05, y: 0.050000004, z: 0.050000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -14769,7 +14769,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4721537428574589993}
-  - component: {fileID: 4090439298275695647}
   - component: {fileID: 1332571828513036913}
   - component: {fileID: 5703207948686363319}
   - component: {fileID: 7130356690406137942}
@@ -14800,19 +14799,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4090439298275695647
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8628007857353523765}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &1332571828513036913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14860,10 +14846,10 @@ MonoBehaviour:
   size: {x: 3, y: 3}
   arrowStartPositions:
   - {fileID: 1711766428931609283}
-  arrowPower: 50
-  attackInterval: 5
+  arrowPower: 70
+  attackInterval: 3
   spellRadius: 6
-  freezeDuration: 0.5
+  freezeDuration: 1
   spellVFX: {fileID: 4238211964655192102}
 --- !u!1001 &5381280694056244301
 PrefabInstance:

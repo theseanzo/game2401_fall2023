@@ -34,6 +34,9 @@ public class PerzCastle : Building
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, spellRadius);
         foreach (var hitCollider in hitColliders)
         {
+            // Exclude the building from the target list
+            if (hitCollider.gameObject == gameObject) continue;
+
             BaseObject target = hitCollider.gameObject.GetComponent<BaseObject>();
             if (target != null && !attackTargets.Contains(target))
             {
@@ -59,7 +62,6 @@ public class PerzCastle : Building
             {
                 FireAtTarget(target);
             }
-
             yield return new WaitForSeconds(attackInterval);
         }
     }
@@ -98,7 +100,7 @@ public class PerzCastle : Building
 
     private void SlowDownMovement(Unit unit)
     {
-        unit.moveSpeed /= 2;
+        unit.moveSpeed /= 3;
     }
 
     private void OnDestroy()
@@ -114,7 +116,7 @@ public class PerzCastle : Building
     {
         if (unit != null)
         {
-            unit.moveSpeed *= 2;
+            unit.moveSpeed *= 3;
         }
     }
 }

@@ -36,6 +36,8 @@ public class Unit : BaseObject
     protected override void Start()
     {
         base.Start();
+        gameObject.tag = "Unit";
+        Health = 100;
         //we need to set up our last position, our seeker, our animator and then set the current state
         lastPos = transform.position;  //where we were last seen
         seeker = GetComponent<Seeker>(); //find the seeker and set it up

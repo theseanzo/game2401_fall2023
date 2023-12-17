@@ -54,7 +54,7 @@ public class BuildingManager : Singleton<BuildingManager>
         {
             gridAlpha = Mathf.MoveTowards(gridAlpha, 0, Time.deltaTime * gridFadeSpeed); //if we are not selecting anything, move towards 0 for the alpha 
         }
-        grid.material.SetColor("_LineColor", new Color(1, 1, 1, gridAlpha)); //we set the material colour every time we do an update
+        //grid.material.SetColor("_LineColor", new Color(1, 1, 1, gridAlpha)); //we set the material colour every time we do an update
 
         if (Input.GetMouseButtonDown(0))
         {

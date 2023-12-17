@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5518b3194edbafc4f9b0eacfe5af0a91, type: 3}
   m_Name: WorldData
   m_EditorClassIdentifier: 
-  buildings:
-  - name: Barracks
-    position: {x: -5, y: 0.1, z: -11}
-  - name: House
-    position: {x: 5, y: 0.1, z: 5}
+  buildings: []

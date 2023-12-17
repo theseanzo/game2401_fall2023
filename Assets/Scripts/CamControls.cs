@@ -46,7 +46,7 @@ public class CamControls : MonoBehaviour
             return;
         Rotate();
         Pan();
-        Zoom();
+        //Zoom();
         
     }
     void Pan()
@@ -56,7 +56,7 @@ public class CamControls : MonoBehaviour
         this.transform.Translate(horizontal * panSpeed, 0, vertical * panSpeed);
         transform.position = bounds.ClosestPoint(transform.position);
     }
-    void Zoom()
+  /*  void Zoom()
     {
         Vector3 mousePosBeforeZoom = GetMouseHitPoint();
         float scrollDelta = Input.GetAxis("Mouse ScrollWheel"); //Make sure this is spelled correctly
@@ -77,7 +77,7 @@ public class CamControls : MonoBehaviour
             Vector3 offset = mousePosBeforeZoom - mousePosAfterZoom;
             transform.Translate(offset, Space.World);
         }
-    }
+    }*/
     private Vector3 GetMouseHitPoint() //this is going to determine where we are hitting in our level
     {
         //we're going to cast a ray into our scene and see where it hits

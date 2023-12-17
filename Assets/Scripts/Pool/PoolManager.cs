@@ -33,6 +33,7 @@ public class PoolManager : Singleton<PoolManager>
             PoolObject poolObject = objStack.Peek();//look at the top item
             PoolObject objectClone = Instantiate(poolObject);
             objectClone.name = poolObject.name;//make sure all objects have the same name
+            objectClone.gameObject.tag = "Unit";
             return objectClone;
         }
         PoolObject oldPoolObject = objStack.Pop();

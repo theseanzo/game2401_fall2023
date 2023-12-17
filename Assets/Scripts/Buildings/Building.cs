@@ -32,7 +32,7 @@ public class Building : BaseObject
     {
         this.gameObject.layer = LayerMask.NameToLayer("Building"); //after: let's make sure that we actually create a Building layer, but this is needed in order for our buildings to be on a building layer
         rd = GetComponentInChildren<MeshRenderer>();
-        buildingDestroyed.AddListener(WorldManager.Instance.DelayedSave);//our world manager will now listen for a building being destroyed
+        //buildingDestroyed.AddListener(WorldManager.Instance.DelayedSave);//our world manager will now listen for a building being destroyed
         
     }
     private void OnValidate()

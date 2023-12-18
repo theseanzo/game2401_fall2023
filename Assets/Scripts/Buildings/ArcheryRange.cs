@@ -10,7 +10,7 @@ public class ArcheryRange : Building
     private float lastAttackTime = 0f;
     [SerializeField] private float _attackRange;
     private Coroutine currentState;
-    private Unit _target;
+    //private Unit _target;
 
     private void SetState(IEnumerator newState) //when we change states, we stop our previous coroutine and then initialize a new one. Technically this can be done with "StopAllCoroutines()" because we only have one coroutine running, but in the case that we had more, we will only a stop a specific coroutine.
     {
@@ -24,7 +24,6 @@ public class ArcheryRange : Building
     protected override void Start()
     {
         base.Start();
-        SetState(OnIdle());
     }
 
     private void FixedUpdate()
@@ -34,11 +33,6 @@ public class ArcheryRange : Building
         {
             SearchForTarget();
         }
-    }
-
-    IEnumerator OnIdle()
-    {
-        yield return null;
     }
 
     IEnumerator OnAttack(Unit target)
@@ -52,9 +46,9 @@ public class ArcheryRange : Building
             //what do do if our building has been destroyed? We idle again
             if (target == null)
             {
-                SetState(OnIdle());
+                break;
             }
-            if (lastAttackTime >= _attackInterval)
+            else if (lastAttackTime >= _attackInterval)
             {
                 lastAttackTime = 0;
                 Attack(target);
@@ -68,11 +62,11 @@ public class ArcheryRange : Building
     {
         Unit[] allUnits = FindObjectsOfType<Unit>(); 
         float shortestDistance = Mathf.Infinity;
-        Unit closestUnit = null; //currently we don't have a closest building so it is null
+        Unit closestUnit = null; 
         foreach (Unit unit in allUnits)
         {
-            float distance = Vector3.Distance(transform.position, unit.transform.position); //get the distance from our unit to the building
-            if (distance < shortestDistance && distance < _attackRange)
+            float distance = Vector3.Distance(transform.position, unit.transform.position); 
+            if (distance < shortestDistance && distance < _attackRange) //makes sure unit is whithin attack range
             {
                 shortestDistance = distance;
                 closestUnit = unit;

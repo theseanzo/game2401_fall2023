@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6371463452811438513}
   - component: {fileID: 7572404874364883150}
+  - component: {fileID: -3065067169362364817}
   m_Layer: 0
   m_Name: WaterSplash
   m_TagString: Untagged
@@ -46,6 +47,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!54 &-3065067169362364817
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676018259296531636}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &3830780706177092552
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,15 +5,15 @@ using UnityEngine;
 public class WaterSplashDefense : MonoBehaviour
 {
     [SerializeField]
-    private Transform splashOrigin;
+    private Transform splashOrigin; 
     [SerializeField]
-    private float splashInterval = 3f;
+    private float splashInterval = 3f; 
     [SerializeField]
     private float splashRange = 5f;
     [SerializeField]
     private int splashDamage = 20;
     [SerializeField]
-    private float splashSpeed = 10f; // Adjust the speed as needed
+    private float splashSpeed = 10f;
     [SerializeField]
     private GameObject waterSplashPrefab;
 
@@ -27,28 +27,36 @@ public class WaterSplashDefense : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(splashInterval);
-            SplashWater();
+            SplashWater(); // trigger the water splash
         }
     }
 
     private void SplashWater()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, splashRange);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, splashRange); // find colliders within the splash range
 
         foreach (var collider in hitColliders)
         {
-            Unit enemyUnit = collider.GetComponent<Unit>();
+            Unit enemyUnit = collider.GetComponent<Unit>(); // get a unit component from the collider
             if (enemyUnit != null)
             {
+                // Check if the enemy is within range
                 if (Vector3.Distance(splashOrigin.position, enemyUnit.transform.position) <= splashRange)
                 {
+                    // instantiate a water splash 
                     GameObject splash = Instantiate(waterSplashPrefab, splashOrigin.position, Quaternion.identity);
 
-                    // Calculate the direction towards the enemy
+                    // direction towards the enemy
                     Vector3 splashDirection = (enemyUnit.transform.position - splash.transform.position).normalized;
 
-                    // Set the velocity of the splash object to shoot towards the enemy
+                    // set the velocity to shoot towards the enemy
                     splash.GetComponent<Rigidbody>().velocity = splashDirection * splashSpeed;
+
+                    // instantiate another water splash effect at the position of the enemy
+                    if (waterSplashPrefab != null)
+                    {
+                        Instantiate(waterSplashPrefab, enemyUnit.transform.position, Quaternion.identity);
+                    }
 
                     Destroy(splash, 2f);
 
@@ -58,4 +66,3 @@ public class WaterSplashDefense : MonoBehaviour
         }
     }
 }
-

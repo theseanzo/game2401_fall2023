@@ -5158,8 +5158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splashOrigin: {fileID: 2011207324865247580}
   splashInterval: 3
-  splashRange: 20
-  splashDamage: 30
+  splashRange: 5
+  splashDamage: 15
   splashSpeed: 10
   waterSplashPrefab: {fileID: 2676018259296531636, guid: de830a34ffdf51244b5ec6472d0da666,
     type: 3}

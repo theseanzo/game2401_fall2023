@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Well : Building
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Transform waterSplashOrigin; 
+    private WaterSplashDefense waterSplashDefense; 
+
+    private void Start()
     {
-        
+        base.Start();
+        InitializeWaterSplashDefense();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InitializeWaterSplashDefense()
     {
-        
+        waterSplashDefense = gameObject.AddComponent<WaterSplashDefense>();
+        waterSplashDefense.enabled = false; 
+    }
+
+    public override void OnDie()
+    {
+        base.OnDie();
+        Destroy(waterSplashDefense);
     }
 }
